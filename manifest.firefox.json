@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "API Response Modder",
+  "version": "1.0.0",
+  "description": "Intercept fetch/XHR calls matching a URL pattern and return a custom response you define.",
+  "permissions": ["storage"],
+  "host_permissions": ["<all_urls>"],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "api-response-modder@local.dev"
+    }
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/isolated.js"],
+      "run_at": "document_start",
+      "world": "ISOLATED",
+      "all_frames": true
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/inject.js"],
+      "run_at": "document_start",
+      "world": "MAIN",
+      "all_frames": true
+    }
+  ]
+}

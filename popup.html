@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>API Response Modder</title>
+  <style>
+    body {
+      width: 220px;
+      font-family: system-ui, sans-serif;
+      padding: 12px;
+    }
+    h1 {
+      font-size: 14px;
+      margin: 0 0 8px;
+    }
+    label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+    button {
+      width: 100%;
+      padding: 8px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>API Response Modder</h1>
+  <label>
+    <input type="checkbox" id="globalEnabled" />
+    Enabled
+  </label>
+  <button id="openManager">Open Rule Manager</button>
+  <script src="popup.js"></script>
+</body>
+</html>

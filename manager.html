@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>API Response Modder - Rules</title>
+  <link rel="stylesheet" href="manager.css" />
+</head>
+<body>
+  <header>
+    <h1>API Response Modder</h1>
+    <p class="subtitle">Define rules to intercept matching requests and return a custom response.</p>
+  </header>
+
+  <main>
+    <section class="editor">
+      <h2 id="formTitle">New Rule</h2>
+      <input type="hidden" id="ruleId" />
+
+      <label>
+        Target URL pattern
+        <input type="text" id="urlPattern" placeholder="https://api.example.com/users*" />
+      </label>
+
+      <div class="row">
+        <label>
+          Match type
+          <select id="matchType">
+            <option value="contains">Contains</option>
+            <option value="wildcard">Wildcard (*)</option>
+          </select>
+        </label>
+
+        <label>
+          Method
+          <select id="method">
+            <option value="ANY">ANY</option>
+            <option value="GET">GET</option>
+            <option value="POST">POST</option>
+            <option value="PUT">PUT</option>
+            <option value="PATCH">PATCH</option>
+            <option value="DELETE">DELETE</option>
+          </select>
+        </label>
+
+        <label>
+          Status code
+          <input type="number" id="status" value="200" min="100" max="599" />
+        </label>
+
+        <label>
+          Content-Type
+          <input type="text" id="contentType" value="application/json" />
+        </label>
+      </div>
+
+      <label>
+        Response body
+        <textarea id="body" rows="10" placeholder='{"example": true}'></textarea>
+      </label>
+
+      <label class="checkbox-row">
+        <input type="checkbox" id="enabled" checked />
+        Enabled
+      </label>
+
+      <div class="actions">
+        <button id="saveRule">Save Rule</button>
+        <button id="clearForm" class="secondary">Clear</button>
+      </div>
+      <p id="formError" class="error"></p>
+    </section>
+
+    <section class="rules-list">
+      <h2>Saved Rules</h2>
+      <table id="rulesTable">
+        <thead>
+          <tr>
+            <th>Enabled</th>
+            <th>Method</th>
+            <th>URL Pattern</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="rulesBody"></tbody>
+      </table>
+      <p id="emptyState" class="empty-state">No rules yet.</p>
+    </section>
+  </main>
+
+  <script src="manager.js"></script>
+</body>
+</html>
