@@ -2,12 +2,15 @@
   let rules = [];
   let globalEnabled = true;
 
+  console.log('%c[API Response Modder] interceptor loaded on this page', 'color: #1a56db; font-weight: bold;');
+
   window.addEventListener('message', (event) => {
     if (event.source !== window) return;
     const data = event.data;
     if (data && data.source === 'api-response-modder' && data.type === 'rules-update') {
       rules = data.rules;
       globalEnabled = data.globalEnabled;
+      console.log('%c[API Response Modder] rules updated', 'color: #1a56db; font-weight: bold;', { rules, globalEnabled });
     }
   });
 
