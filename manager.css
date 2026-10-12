@@ -15,6 +15,12 @@ h1 {
   font-size: 22px;
 }
 
+.by-line {
+  font-size: 12px;
+  font-weight: 400;
+  color: #777;
+}
+
 .subtitle {
   color: #555;
   font-size: 13px;

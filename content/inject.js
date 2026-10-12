@@ -38,6 +38,11 @@
     const rule = findRule(url, method);
 
     if (rule) {
+      console.log(
+        `%c[API Response Modder] matched ${method} ${url}`,
+        'color: #1a56db; font-weight: bold;',
+        { rule, request: { url, method, init } }
+      );
       return Promise.resolve(
         new Response(rule.body, {
           status: rule.status,
@@ -57,7 +62,9 @@
 
     const originalOpen = xhr.open.bind(xhr);
     xhr.open = function (method, url, ...rest) {
-      matchedRule = findRule(url, method.toUpperCase());
+      xhr.__arm_method = method.toUpperCase();
+      xhr.__arm_url = url;
+      matchedRule = findRule(url, xhr.__arm_method);
       return originalOpen(method, url, ...rest);
     };
 
@@ -68,6 +75,11 @@
       }
 
       const rule = matchedRule;
+      console.log(
+        `%c[API Response Modder] matched XHR ${xhr.__arm_method || ''} ${xhr.__arm_url || ''}`,
+        'color: #1a56db; font-weight: bold;',
+        { rule, requestBody: body }
+      );
       Object.defineProperty(xhr, 'readyState', { value: 4, configurable: true });
       Object.defineProperty(xhr, 'status', { value: rule.status, configurable: true });
       Object.defineProperty(xhr, 'statusText', { value: 'OK', configurable: true });
