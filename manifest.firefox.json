@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "API Response Modder",
+  "name": "API Police",
   "version": "1.0.0",
   "description": "Intercept fetch/XHR calls matching a URL pattern and return a custom response you define.",
   "permissions": ["storage"],

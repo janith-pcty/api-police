@@ -1,4 +1,4 @@
-# API Response Modder
+# API Police
 
 A browser extension that intercepts `fetch`/`XMLHttpRequest` calls matching a URL
 pattern and returns a fully custom response instead of hitting the network.
